@@ -38,8 +38,8 @@
           "Write"
         ],
         "websiteURL": "https://ecc.tools",
-        "privacyPolicyURL": "https://ecc.tools/legal/privacy",
-        "termsOfServiceURL": "https://ecc.tools/legal/terms",
+        "privacyPolicyURL": "https://ecc.tools/privacy",
+        "termsOfServiceURL": "https://ecc.tools/terms",
         "brandColor": "#E07856",
         "composerIcon": "./assets/ecc-icon.svg",
         "logo": "./assets/hero.png",
