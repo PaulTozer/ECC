@@ -3,6 +3,11 @@
 Everything Claude Code (ECC) baseline rules for GitHub Copilot Chat in VS Code.
 These instructions are always active. Use the prompts in `.github/prompts/` for deeper workflows.
 
+For the native skills, custom agents, local Memory Vault and optional hook
+plugin for Copilot CLI, the Copilot app and VS Code, see
+[the local Copilot setup guide](../docs/COPILOT.md). The existing prompt files
+remain a VS Code Local compatibility surface; they are not a CLI installation.
+
 ## Core Workflow
 
 1. **Research first** — search for existing implementations before writing anything new.
