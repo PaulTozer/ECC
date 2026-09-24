@@ -94,6 +94,18 @@ test('README documents prompt-file settings and surfaces', () => {
   assert.ok(readme.includes('.vscode/settings.json'));
 });
 
+test('native Copilot documentation distinguishes plugins from legacy prompt-only support', () => {
+  const readme = read('README.md');
+  const guide = read('docs/COPILOT.md');
+  assert.ok(readme.includes('docs/COPILOT.md'));
+  assert.ok(!readme.includes('Copilot has no hook system'));
+  assert.ok(!readme.includes('Copilot has no subagent API'));
+  for (const text of ['--with-memory', '--with-hooks', 'chat.plugins.enabled', 'copilot plugin install']) {
+    assert.ok(guide.includes(text), `Missing native installation detail: ${text}`);
+  }
+  assert.ok(guide.includes('not full Claude runtime emulation'));
+});
+
 if (failed > 0) {
   console.log(`\nFailed: ${failed}`);
   process.exit(1);

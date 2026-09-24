@@ -81,6 +81,7 @@
     "commands/",
     "docs/de-DE/",
     "docs/CODEX-NAVIGATION-GUIDE.md",
+    "docs/COPILOT.md",
     "docs/COMMAND-AGENT-MAP.md",
     "docs/ROADMAP.md",
     "docs/design/ecc-memory-vault.md",
@@ -109,6 +110,8 @@
     "scripts/auto-update.js",
     "scripts/claw.js",
     "scripts/control-pane.js",
+    "scripts/copilot-package.js",
+    "scripts/copilot-hook.js",
     "scripts/codex/check-plugin-cache.js",
     "scripts/codex/merge-codex-config.js",
     "scripts/codex/merge-mcp-config.js",
@@ -466,6 +469,7 @@
     "ecc-universal": "scripts/ecc.js"
   },
   "scripts": {
+    "copilot:package": "node scripts/copilot-package.js",
     "welcome": "echo '\\n  ecc-universal installed!\\n  Run: ecc typescript\\n  Compat: ecc-install typescript\\n  Docs: https://github.com/affaan-m/ECC\\n  Run or self-host any open-source model.\\n  Compute: Itô is the preferred compute sponsor — https://compute.itomarkets.com\\n  Any GPU provider works. This sponsorship link is passive: it does not invoke an RFQ, reserve capacity, provision compute, or configure serving.\\n  Separately, the opt-in ecc ito find bridge invokes the explicitly configured canonical Itô CLI and submits a live authenticated RFQ; it does not reserve capacity.\\n  Managed inference through Itô is not live yet.\\n'",
     "catalog:check": "node scripts/ci/catalog.js --text",
     "catalog:sync": "node scripts/ci/catalog.js --write --text",

@@ -1643,7 +1643,17 @@ For the full ECC OpenCode setup, either:
 <details>
 <summary><strong>GitHub Copilot support in depth</strong></summary>
 
-ECC provides **GitHub Copilot support** for VS Code via Copilot Chat's native instruction and prompt file system. No extra tooling required.
+ECC provides a **native local Copilot plugin** for recent Copilot CLI, Copilot app and VS Code versions, alongside the existing VS Code instruction/prompt layer. See [Native local GitHub Copilot integration](docs/COPILOT.md) for packaging, installation and compatibility details.
+
+From a checkout with restored Node dependencies, build to a new directory outside the checkout and register it with Copilot:
+
+```powershell
+$plugin = Join-Path $env:USERPROFILE ".copilot\ecc-local\release-1"
+node scripts\copilot-package.js --output $plugin --with-memory --with-hooks
+copilot plugin install $plugin
+```
+
+The plugin bundles all canonical skills and converted custom agents, plus local Node utilities. Memory and hooks are opt-in; omit their flags for a skills-and-agents-only installation. VS Code can discover CLI-installed plugins with `chat.plugins.enabled` enabled.
 
 #### What's included for GitHub Copilot
 
@@ -1676,12 +1686,14 @@ To use the workflow prompts in Copilot Chat:
 | Build error resolution | `build-fix` prompt |
 | Refactoring | `refactor` prompt |
 | Commit message format | Per-task instruction in `settings.json` |
-| Hooks / automation | Not supported (Copilot has no hook system) |
-| Agents / delegation | Not supported (Copilot has no subagent API) |
+| Native skills | All canonical ECC skills in the optional local plugin |
+| Local memory | Opt-in ECC Memory Vault MCP server, scoped to project/team memory |
+| Hooks / automation | Opt-in Git hook-bypass guard with CLI and VS Code payload adapters |
+| Agents / delegation | Native `ecc-<name>` custom agents in the optional local plugin |
 
 #### Limitations
 
-GitHub Copilot does not have a hook system or a subagent API, so ECC's hook automations (auto-format, TypeScript check, session persistence, dev-server guard) and agent delegation are unavailable. The instruction and prompt layer still brings the full ECC coding philosophy (standards, security, TDD, and workflow) into every Copilot Chat session.
+Copilot supports hooks and custom agents, but Claude-specific hooks are not interchangeable with Copilot's runtime contracts. The local plugin does not enable automatic formatting, transcript capture, session persistence or instinct learning. External MCP services, credentials and language-specific toolchains remain separate prerequisites. Existing `.prompt.md` files are a VS Code Local compatibility surface, not portable CLI workflows.
 </details>
 
 <details>
